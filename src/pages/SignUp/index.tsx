@@ -5,7 +5,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
-  TextInput
+  TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
