@@ -8,9 +8,15 @@ import React, {
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../services/api';
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar_url: string;
+}
 interface AuthState {
   token: string;
-  user: object;
+  user: User;
 }
 interface SingInCredentials {
   email: string;
@@ -18,7 +24,7 @@ interface SingInCredentials {
 }
 
 interface AuthcontextData {
-  user: object;
+  user: User;
   signIn(credentials: SingInCredentials): Promise<void>;
   signOut(): void;
   loading: boolean;
@@ -37,6 +43,7 @@ const AuthProvider: React.FC = ({ children }) => {
       ]);
 
       if (token[1] && user[1]) {
+        api.defaults.headers.authorization = `Bearer ${token[1]}`;
         setData({ token: token[1], user: JSON.parse(user[1]) });
       }
       setLoading(false);
@@ -45,14 +52,13 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signIn = useCallback(async ({ email, password }) => {
-    console.log(email);
-    console.log(password);
-
     const response = await api.post('/sessions', {
       email,
       password,
     });
     const { token, user } = response.data;
+
+    api.defaults.headers.authorization = `Bearer ${token[1]}`;
 
     await AsyncStorage.multiSet([
       ['@GoBarber:token', token],
