@@ -28,12 +28,6 @@ export interface Provider {
   avatar_url: string;
 }
 
-export interface Provider {
-  id: string;
-  name: string;
-  avatar_url: string;
-}
-
 const Dashboard: React.FC = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
 
