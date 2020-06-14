@@ -47,6 +47,7 @@ export const ProviderContainer = styled(RectButton)`
   padding: 20px;
   margin-bottom: 16px;
   flex-direction: row;
+  align-items: center;
 `;
 
 export const ProviderAvatar = styled.Image`

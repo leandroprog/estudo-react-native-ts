@@ -28,6 +28,12 @@ export interface Provider {
   avatar_url: string;
 }
 
+export interface Provider {
+  id: string;
+  name: string;
+  avatar_url: string;
+}
+
 const Dashboard: React.FC = () => {
   const [providers, setProviders] = useState<Provider[]>([]);
 
@@ -79,7 +85,7 @@ const Dashboard: React.FC = () => {
               <ProviderName>{provider.name}</ProviderName>
               <ProviderMeta>
                 <Icon name="calendar" size={14} color="#ff9000" />
-                <ProviderMetaText>Segunda à Sexta</ProviderMetaText>
+                <ProviderMetaText>Segunda à Sexta </ProviderMetaText>
               </ProviderMeta>
               <ProviderMeta>
                 <Icon name="clock" size={14} color="#ff9000" />
